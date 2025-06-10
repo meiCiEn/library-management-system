@@ -46,9 +46,44 @@ const library = {
 
         }
             console.log(`"${bookTitle}" not found.`);
+    }, 
+
+    // return a new array containing only the books that have isRead set to false
+    listUnreadBooks() {
+        const unreadBooks = [];
+        for (const book of this._books) {
+            if (book.isRead === false) {
+                unreadBooks.push(book);
+            }
+        }
+        console.log(unreadBooks);
+    },
+
+    // remove the book with the matching title from the _books array
+    removeBook(bookTitle) {
+        // create array with books to keep
+        let booksToKeep = [];
+        // loop through each book in the current _books array
+        for (let i = 0; i < this._books.length; i++) {
+            // get the current book object
+            const book = this._books[i];
+            // check if bookTitle does NOT match books we want to keep
+            if (book.title !== bookTitle) {
+                // add to booksToKeep array
+                booksToKeep.push(book);
+            }
+        }
+        // after checking through all books, replace this._book array with booksToKeep
+        this._books = booksToKeep;
+
     }
 
 };
 
 library.markAsRead('Dune');
 library.markAsRead('Harry Potter');
+library.listUnreadBooks();
+library.removeBook('1984'); // Remove an existing book
+
+console.log("\n--- Final Library State ---");
+console.log(library.getBooks);
