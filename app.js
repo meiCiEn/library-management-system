@@ -36,14 +36,19 @@ const library = {
     
     markAsRead(bookTitle) {
         // iterate through the _books array and find the book with the matching title
-        for (book in this._books) {
+        for (const book of this._books) {
             // update that book's isRead property to true
             if (bookTitle === book.title) {
                 book.isRead = true;
-            }
+                console.log(`"${bookTitle}" marked as read.`);
+                return;
+            } 
 
-            
         }
+            console.log(`"${bookTitle}" not found.`);
     }
 
 };
+
+library.markAsRead('Dune');
+library.markAsRead('Harry Potter');
