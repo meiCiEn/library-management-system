@@ -19,5 +19,31 @@ const library = {
             pages: 328,
             isRead: false
         }
-    ]
+    ], 
+    get getBooks() {
+        return this._books;
+    },
+    // create a new book object, add it to the _books array
+    addBook(title, author, pages, isRead) {
+        let book = {
+            title: title,
+            author: author,
+            pages: pages,
+            isRead: isRead
+        };
+        this._books.push(book);
+    },
+    
+    markAsRead(bookTitle) {
+        // iterate through the _books array and find the book with the matching title
+        for (book in this._books) {
+            // update that book's isRead property to true
+            if (bookTitle === book.title) {
+                book.isRead = true;
+            }
+
+            
+        }
+    }
+
 };
